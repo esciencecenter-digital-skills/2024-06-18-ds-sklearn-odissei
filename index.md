@@ -86,30 +86,6 @@ Read correct lesson meta from esciencecenter-digital-skills/workshop-metadata
 {% capture lesson_meta %}https://raw.githubusercontent.com/esciencecenter-digital-skills/workshop-metadata/main/{{info.curriculum}}{% endcapture %}
 {% endif %}
 
-{% comment %}
-Check DC curriculum
-{% endcomment %}
-
-{% comment %}
-EVENTBRITE
-
-This block includes the Eventbrite registration widget if
-'eventbrite' has been set in the header.  You can delete it if you
-are not using Eventbrite, or leave it in, since it will not be
-displayed if the 'eventbrite' field in the header is not set.
-{% endcomment %}
-{% if eventbrite %}
-<strong>Some adblockers block the registration window. If you do not see the
-  registration box below, please check your adblocker settings.</strong>
-<iframe
-  src="https://www.eventbrite.com/tickets-external?eid={{eventbrite}}&ref=etckt"
-  frameborder="0"
-  width="100%"
-  height="400px"
-  scrolling="auto">
-</iframe>
-{% endif %}
-
 
 <h2 id="general">General Information</h2>
 
@@ -128,25 +104,6 @@ the pitch.
 {% elsif info.carpentry == "ds" %}
 {% include ds/intro.md %}
 {% remote_include {{lesson_meta}}/description.md %}
-{% endif %}
-
-{% comment %}
-AUDIENCE
-
-Explain who your audience is.  (In particular, tell readers if the
-workshop is only open to people from a particular institution.
-{% endcomment %}
-{% if info.carpentry == "swc" %}
-{% include swc/who.html %}
-{% elsif info.carpentry == "dc" %}
-{% include dc/who.html %}
-{% elsif info.carpentry == "lc" %}
-{% include lc/who.html %}
-{% elsif info.carpentry == "ds" %}
-<div style="display: flex"><div>
-     <strong>Who:&nbsp;</strong>
-     </div>
-     <div markdown=1>{% remote_include {{lesson_meta}}/who.md %}</div></div>
 {% endif %}
 
 {% comment %}
@@ -221,41 +178,7 @@ Modify the block below if there are any special requirements.
   They should have a few specific software packages installed (listed <a href="#setup">below</a>).
 </p>
 
-{% comment %}
-ACCESSIBILITY
 
-Modify the block below if there are any barriers to accessibility or
-special instructions.
-{% endcomment %}
-<p id="accessibility">
-  <strong>Accessibility:</strong>
-{% if online == "false" %}
-  We are committed to making this workshop
-  accessible to everybody. The workshop organizers have checked that:
-</p>
-<ul>
-  <li>The room is wheelchair / scooter accessible.</li>
-  <li>Accessible restrooms are available.</li>
-</ul>
-<p>
-  Materials will be provided in advance of the workshop and
-  large-print handouts are available if needed by notifying the
-  organizers in advance.  If we can help making learning easier for
-  you (e.g. sign-language interpreters, lactation facilities) please
-  get in touch (using contact details below) and we will
-  attempt to provide them.
-</p>
-{% else %}
-  We are dedicated to providing a positive and accessible learning environment for all. Please
-  notify the instructors in advance of the workshop if you require any accommodations or if there is
-  anything we can do to make this workshop more accessible to you.
-</p>
-{% endif %}
-
-<p id="files">
-  <strong>Workshop files:</strong>
-  You will find all slides, notebooks, archived collaborative documents, and other relevant files in the <a href="https://github.com/esciencecenter-digital-skills/{{ info.slug }}/tree/main/files">files</a> folder of the workshop website repository after the workshop.
-</p>
 
 {% comment %}
 CONTACT EMAIL ADDRESS
@@ -282,26 +205,7 @@ Display the contact email address set in the configuration file.
   for more information.
 </p>
 
-{% comment %}
-WHO CAN ATTEND?
 
-If you would like to specify who can attend the workshop,
-you can use the section below.
-
-Move the 'endcomment' tag above the beginning of the following
-<p> tag to make this section visible.
-
-Edit the text to match who can attend the workshop. For instance:
-- This workshop is open to affiliates to ABC university.
-- This workshop is open to the public.
-- If you are interested in attending this workshop, contact me@example.com
-  for more information
-
-<p id="who-can-attend">
-    <strong>Who can attend?:</strong>
-    This workshop is open to ....
-</p>
-{% endcomment %}
 
 <hr/>
 
@@ -382,27 +286,81 @@ of code below the Schedule `<h2>` header below with
 
 {% if info.carpentry == "ds" %}
 <h2 id="syllabus">Syllabus</h2>
-{% remote_include {{lesson_meta}}/syllabus.md %}
+
+Machine learning concepts
+- What is machine learning?
+- Different types of machine learning
+- Big picture of machine learning models
+- General pipeline
+
+The predictive modeling pipeline
+- Tabular data exploration
+- Fitting a scikit-learn model on numerical data
+- Handling categorical data
+
+Machine learning algorithms
+- Intuitions on linear models
+- Overview of machine learning algorithms
+
+Machine learning best practices
+- Data hygiene
+- Correct evaluation
+- How to keep your machine learning project organised
+
+Applying machine learning on LISS dataset:
+- How to prepare real-world data for machine learning?
+- Take the first steps in predicting fertility using LISS data
+
 {% endif %}
 
 <h2 id="schedule">Schedule</h2>
+<div class="row">
+  <div class="col-md-6">
+   <h3>Day 1</h3>
+    <table class="table table-striped">
+      <tr> <th>local time</th> <th>what</th></tr>
+      <tr> <td>09:00</td>  <td>Welcome and icebreaker</td> </tr>
+      <tr> <td>09:15</td>  <td>Introduction to machine learning</td> </tr>
+      <tr> <td>10:00</td>  <td>Break  </td> </tr>
+      <tr> <td>10:10</td>  <td>Tabular data exploration </td> </tr>
+      <tr> <td>11:00</td>  <td>Break</td> </tr>
+      <tr> <td>11:10</td>  <td>First model with scikit-learn  </td> </tr>
+      <tr> <td>12:00</td>  <td>Lunch Break</td> </tr>
+      <tr> <td>13:00</td>  <td>Fitting a scikit-learn model on numerical data</td> </tr>
+      <tr> <td>14:00</td>  <td>Working with numerical data </td> </tr>
+      <tr> <td>14:20</td>  <td>Break</td> </tr>
+      <tr> <td>14:30</td>  <td>Intuition on linear models</td> </tr>
+      <tr> <td>15:00</td>  <td>Handling categorical data</td> </tr>
+      <tr> <td>15:50</td>  <td>Break</td> </tr>
+      <tr> <td>16:00</td>  <td>Guest lecture</td> </tr>
+      <tr> <td>17:00</td>  <td>END</td> </tr>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <h3>Day 2</h3>
+    <table class="table table-striped">
+      <tr> <th>local time</th> <th>what</th></tr>
+      <tr> <td>09:00</td>  <td>Welcome and recap</td> </tr>
+      <tr> <td>09:15</td>  <td>Fertility prediction assignment</td> </tr>
+      <tr> <td>10:00</td>  <td>Break</td> </tr>
+      <tr> <td>10:10</td>  <td>Fertility prediction assignment </td> </tr>
+      <tr> <td>11:00</td>  <td>Break </td> </tr>
+      <tr> <td>11:10</td>  <td>Fertility prediction assignment </td> </tr>
+      <tr> <td>12:00</td>  <td>Lunch Break</td> </tr>
+      <tr> <td>13:00</td>  <td>Machine learning best practices and next steps</td> </tr>
+      <tr> <td>14:00</td>  <td>Fertility prediction assignment</td> </tr>
+      <tr> <td>14:20</td>  <td>Break</td> </tr>
+      <tr> <td>14:30</td>  <td>Hand in first solution to benchmark <br> Q&A </td> </tr>
+      <tr> <td>15:30</td>  <td>Wrap-up & Post-workshop Survey</td> </tr>
+      <tr> <td>15:50</td>  <td>Break</td> </tr>
+      <tr> <td>16:00</td>  <td>Guest lecture</td> </tr>
+      <tr> <td>17:00</td>  <td>END</td> </tr>
+    </table>
+  </div>
+</div>
 
-{% if info.carpentry == "swc" %}
-{% include swc/schedule.html %}
-{% elsif info.carpentry == "dc" %}
-{% include dc/schedule.html %}
-{% elsif info.carpentry == "lc" %}
-{% include lc/schedule.html %}
-{% elsif info.carpentry == "ds" %}
-{% remote_include {{lesson_meta}}/schedule.md %}
-{% elsif info.carpentry == "pilot" %}
-The lesson taught in this workshop is being piloted and a precise schedule is yet to be established. The workshop will include regular breaks. If you would like to know the timing of these breaks in advance, please [contact the workshop organisers](#contact). For a list of lesson sections and estimated timings, [visit the lesson homepage]({{ site.lesson_site }}).
-{% comment %}
-Edit/replace the text above if you want to include a schedule table.
-See the contents of the _includes/custom-schedule.html file for an example of
-how one of these schedule tables is constructed.
-{% endcomment %}
-{% endif %}
+<p><b>All times in the schedule are in the CEST timezone.</b></p>
+
 
 <hr/>
 
